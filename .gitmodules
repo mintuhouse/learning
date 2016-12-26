@@ -1,3 +1,6 @@
 [submodule "android/ud851/ud851-Sunshine"]
 	path = android/ud851/ud851-Sunshine
 	url = git@github.com:mintuhouse/ud851-Sunshine.git
+[submodule "android/ud851/ud851-Exercises"]
+	path = android/ud851/ud851-Exercises
+	url = git@github.com:mintuhouse/ud851-Exercises.git
