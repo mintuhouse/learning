@@ -23,6 +23,34 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, $ionicPopup
 			self.isLoading = true;
 			var deferred = $q.defer();
 
+			function loadData(){
+				var params = {
+					page: self.page,
+					lat: self.lat,
+					lon: self.lon
+				};
+
+				$http.get('https://api.codecraft.tv/samples/v1/coffee/', {params: params})
+					.success(function (data) {
+						console.log(data);
+
+						if (data.businesses.length == 0) {
+							self.hasMore = false;
+						} else {
+							angular.forEach(data.businesses, function (business) {
+								self.results.push(business);
+							});
+						}
+
+						self.isLoading = false;
+						deferred.resolve();
+					})
+					.error(function (data, status, headers, config) {
+						self.isLoading = false;
+						deferred.reject(data);
+					});
+			}
+
 			ionic.Platform.ready(function () {
 				$cordovaGeolocation
 					.getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
@@ -30,41 +58,19 @@ app.service("YelpService", function ($q, $http, $cordovaGeolocation, $ionicPopup
 						self.lat = position.coords.latitude;
 						self.lon = position.coords.longitude;
 
-						var params = {
-							page: self.page,
-							lat: self.lat,
-							lon: self.lon
-						};
-
-						$http.get('https://api.codecraft.tv/samples/v1/coffee/', {params: params})
-							.success(function (data) {
-								console.log(data);
-
-								if (data.businesses.length == 0) {
-									self.hasMore = false;
-								} else {
-									angular.forEach(data.businesses, function (business) {
-										self.results.push(business);
-									});
-								}
-
-								self.isLoading = false;
-								deferred.resolve();
-							})
-							.error(function (data, status, headers, config) {
-								self.isLoading = false;
-								deferred.reject(data);
-							});
+						loadData();
 
 					}, function (err) {
 						console.error("Error getting position");
 						console.error(err);
-						$ionicPopup.alert({
-							'title': 'Please switch on geolocation',
-							'template': "It seems like you've switched off geolocation for caffeinehit, please switch it on by going to you application settings."
-						});
+						// $ionicPopup.alert({
+						// 	'title': 'Please switch on geolocation',
+						// 	'template': "It seems like you've switched off geolocation for caffeinehit, please switch it on by going to you application settings."
+						// });
 					})
 			});
+
+			loadData();
 
 			return deferred.promise;
 		}
