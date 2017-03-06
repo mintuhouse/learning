@@ -9814,3 +9814,45 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.gm-style > div:first-child > div + div > div:last-child > div > div:last-child {
+  margin-right: 5px;
+  margin-top: 5px; }
+  .gm-style > div:first-child > div + div > div:last-child > div > div:last-child > img {
+    display: none; }
+
+.gm-style > div:first-child > div + div > div:last-child > div > div:first-child > div {
+  background-color: #f8f8f8 !important;
+  box-shadow: none !important; }
+  .gm-style > div:first-child > div + div > div:last-child > div > div:first-child > div > div > div {
+    background-color: #f8f8f8 !important; }
+
+.gm-style-iw {
+  max-width: 240px; }
+  .gm-style-iw .contents img {
+    float: left;
+    margin-right: 10px; }
+  .gm-style-iw .contents .address {
+    color: #444; }
+  .gm-style-iw .contents .distance {
+    color: #387ef5; }
+  .gm-style-iw .contents .rating {
+    color: #ef473a; }
+
+.gm-style {
+  background-color: #f8f8f8; }
+
+.bar-header .title img {
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -5px; }
+
+.scroll-content > map {
+  height: 100%; }
+
+.scroll-content > .scroll {
+  height: 100%; }
+
+.scroll-content > .scroll > map {
+  min-height: 100%; }

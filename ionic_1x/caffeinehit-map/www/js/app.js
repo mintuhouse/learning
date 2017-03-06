@@ -1,6 +1,7 @@
 var app = angular.module('caffeinehit', [
 	'ionic',
 	'ngCordova',
+	'ngMap',
 	'caffeinehit.controllers',
 	'caffeinehit.services',
 	'caffeinehit.filters'
