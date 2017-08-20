@@ -12118,7 +12118,7 @@ Standard deviation of prices: $165,171.13
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Yes as R2 score of 0.923 implies that 93% of the variance in target variable Y is predictable from X</p>
+<p>R2 score of 0.923 implies that 93% of the variance in target variable Y is explained by model. Higher the R2, better model fits the data &amp; hence strong correlation.</p>
 
 </div>
 </div>
@@ -13290,9 +13290,9 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>max_depth = 3</p>
-<p>The learning curves (training and testing) converge to a score of around 0.8 as more training points are added. 
-Adding more points beyond 300 wouldn't have significant impact as the curves seemed to have more or less flattened by then.</p>
-<p>Adding more data beyond that will increase the confidence in our model, though it may take longer to train the model.</p>
+<p>Training score starts with near perfect score and decreases intitially as we add more data. But on the other hand, testing score starts at 0 and quickly keep getting better with data.The learning curves (training and testing) converge to a score of around 0.8 as more training points are added.</p>
+<p>Adding more points beyond 300 wouldn't have significant impact as the curves seemed to have more or less flattened by then. 
+Adding more data beyond that will increase the confidence in our model, though it may take longer to train the model.</p>
 
 </div>
 </div>
@@ -13864,7 +13864,7 @@ I have used gamma values separated logarthmically, so they cover more ground</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>When using model complexity graph to identify the model with just the right fit, we need to futher split the training data for cross validation. This decreases the effective training data size. We use k-fold cross-validation technique to overcome this by splitting the total data into k buckets and train the model k times, each time with a different testing set and finally averaging the score to get the final model</p>
+<p>When using model complexity graph to identify the model with just the right fit, we need to futher split the training data for cross validation. This decreases the effective training data size. We use k-fold cross-validation technique to overcome this by splitting the total data into k buckets and train the model k times, each time with a different testing set (training using the remaining k-1 buckets for training) and finally averaging the score to get the final model</p>
 <p>Without the k-fold cross-validation, the results of the grid search could depend on the random choice of train, test sets.</p>
 
 </div>
@@ -13923,7 +13923,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
 
     <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)}</span>
 
     <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using &#39;make_scorer&#39; </span>
     <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">)</span>
@@ -14009,7 +14009,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <p><strong> Hint: </strong> The answer comes from the output of the code snipped above.</p>
 <p><strong>Answer: </strong></p>
 <p>4</p>
-<p>Answer is similar to one in Question 6</p>
+<p>Answer is similar to one in Question 6 - picks 4 as GridSearch searches for estimator with highest validation score  on different data splits</p>
 
 </div>
 </div>
@@ -14105,9 +14105,127 @@ Predicted selling price for Client 3&#39;s home: $921,900.00
 <p><strong>Answer: </strong></p>
 <p>Recommended price Client 1 : \$411,096.00, Client 2 : \$219,961.54, Client 3 : \$921,900.00</p>
 <p>The prices seem sensible as agree with the intuition from Answer 1</p>
+<p>Average MEDV value is around $450K, RM is 6.24, LSTAT is 12.94, PTRATIO is 18.5.</p>
+<p>Even if even assume other features are constant, MEDV ordering is same in all cases</p>
+<p>RM2 &lt; RM1 &lt; RM3               =&gt; MEDV2 &lt; MEDV1 &lt; MEDV3,</p>
+<p>LSTAT3 &lt; LSTAT1 &lt; LSTAT2      =&gt; MEDV2 &lt; MEDV1 &lt; MEDV3,</p>
+<p>PTRATIO3 &lt; PTRATIO1&lt; PTRATIO2 =&gt; MEDV2 &lt; MEDV1 &lt; MEDV3,</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[26]:</div>
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RM</th>
+      <th>LSTAT</th>
+      <th>PTRATIO</th>
+      <th>MEDV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>489.000000</td>
+      <td>489.000000</td>
+      <td>489.000000</td>
+      <td>4.890000e+02</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>6.240288</td>
+      <td>12.939632</td>
+      <td>18.516564</td>
+      <td>4.543429e+05</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.643650</td>
+      <td>7.081990</td>
+      <td>2.111268</td>
+      <td>1.653403e+05</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>3.561000</td>
+      <td>1.980000</td>
+      <td>12.600000</td>
+      <td>1.050000e+05</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>5.880000</td>
+      <td>7.370000</td>
+      <td>17.400000</td>
+      <td>3.507000e+05</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>6.185000</td>
+      <td>11.690000</td>
+      <td>19.100000</td>
+      <td>4.389000e+05</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6.575000</td>
+      <td>17.120000</td>
+      <td>20.200000</td>
+      <td>5.187000e+05</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>8.398000</td>
+      <td>37.970000</td>
+      <td>22.000000</td>
+      <td>1.024800e+06</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
