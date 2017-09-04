@@ -21,6 +21,8 @@ var Todo = mongoose.model('Todo', {
   }
 });
 
+// Mongoose does type casting by default to help validations pass. Be careful as it may lead to bugs.
+
 var newTodo = new Todo({
   text: 'Cook Dinner'
 })
@@ -30,3 +32,23 @@ newTodo.save().then((doc) => {
 }, (e) => {
   console.log(e);
 });
+
+
+var User = mongoose.model('User', {
+  email: {
+    type: String,
+    required: true,
+    minlength: 1,
+    trim: true
+  }
+});
+
+var newUser = new User({
+  email: 'test@example.com'
+});
+
+newUser.save().then((doc) => {
+  console.log(JSON.stringify(doc, undefined, 2));
+}, (error) => {
+  console.log(error);
+})
