@@ -14,6 +14,23 @@ var io = socketIO(server);
 io.on('connection', (socket) => {
   console.log("New user connected");
 
+  // socket.emit('newMessage', {
+  //   from: "mike@example.com",
+  //   text: 'Hey! Whatsup?',
+  //   createdAt: 123
+  // });
+
+  socket.on('createMessage', (newMessage) => {
+    console.log('createMessage', newMessage);
+
+    // Emit to everyone but socket
+    socket.broadcast.emit('newMessage', {
+      from: newMessage.from,
+      text: newMessage.text,
+      createdAt: new Date().getTime()
+    })
+  })
+
   socket.on('disconnect', () => {
     console.log("Disconnected")
   })
