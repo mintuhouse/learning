@@ -1,6 +1,9 @@
 const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
+
+const {generateMessage} = require('./utils/message');
+
 var app = express();
 
 const path = require('path');
@@ -24,11 +27,7 @@ io.on('connection', (socket) => {
     console.log('createMessage', newMessage);
 
     // Emit to everyone but socket
-    socket.broadcast.emit('newMessage', {
-      from: newMessage.from,
-      text: newMessage.text,
-      createdAt: new Date().getTime()
-    })
+    socket.broadcast.emit('newMessage', generateMessage(newMessage.from, newMessage.text))
   })
 
   socket.on('disconnect', () => {
