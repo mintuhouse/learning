@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .",
+    "lint": "eslint src",
+    "test": "npm run lint && echo \"Write some tests!\"",
+    "watch": "nodemon --watch src --exec \"npm run test && npm run start\""
   },
   "author": "",
   "license": "ISC",
