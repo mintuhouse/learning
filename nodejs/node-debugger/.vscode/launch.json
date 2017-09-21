@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Nodemon with debugger attached",
+        "runtimeExecutable": "nodemon",
+        "runtimeArgs": [
+          
+        ],
+        "program": "${file}",
+        "restart": true,
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen", 
+        "cwd": "${workspaceRoot}",
+        "skipFiles": [
+          "${workspaceRoot}/node_modules/**/*.js",
+          "!${workspaceRoot}/node_modules/math/**/*.js"
+        ]
+      },
+      {
+        "type": "node",
+        "request": "attach",
+         "name": "Attach to Nodemon(already running)",
+        // "processId": "${command:PickProcess}",
+        "port": 9229,
+        "restart": true
+      },
+      // {
+      //   "type": "node",
+      //   "request": "launch",
+      //   "name": "Launch Node.js",
+      //   "program": "${file}", 
+      //   "cwd": "${workspaceRoot}"
+      // }
+    ]
+  }
