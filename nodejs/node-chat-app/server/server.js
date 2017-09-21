@@ -23,9 +23,9 @@ io.on('connection', (socket) => {
   //   createdAt: 123
   // });
 
-  socket.on('createMessage', (newMessage) => {
+  socket.on('createMessage', (newMessage, callback) => {
     console.log('createMessage', newMessage);
-
+    callback({a: 1});
     // Emit to everyone but socket
     socket.broadcast.emit('newMessage', generateMessage(newMessage.from, newMessage.text))
   })
