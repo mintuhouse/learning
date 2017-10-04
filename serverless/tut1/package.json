@@ -1,0 +1,16 @@
+{
+  "name": "tut1",
+  "version": "1.0.0",
+  "description": "Serverless Tutorial",
+  "main": "index.js",
+  "author": "Hasan Kumar",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "serverless": "^1.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
