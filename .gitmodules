@@ -4,3 +4,6 @@
 [submodule "android/ud851/ud851-Exercises"]
 	path = android/ud851/ud851-Exercises
 	url = git@github.com:mintuhouse/ud851-Exercises.git
+[submodule "terraform/udemy/devops-box"]
+	path = terraform/udemy/devops-box
+	url = https://github.com/wardviaene/devops-box
