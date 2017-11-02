@@ -1,4 +1,10 @@
 {
+  "database": {
+    "rules": "database-rules.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
   "hosting": {
     "public": "./",
     "ignore": [
@@ -8,11 +14,11 @@
       "functions"
     ],
     "headers": [{
-      "source" : "**/*.@(js|html)",
-      "headers" : [ {
-        "key" : "Cache-Control",
-        "value" : "max-age=0"
-      } ]
+      "source": "**/*.@(js|html)",
+      "headers": [{
+        "key": "Cache-Control",
+        "value": "max-age=0"
+      }]
     }]
   }
 }
