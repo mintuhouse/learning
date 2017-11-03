@@ -3,6 +3,8 @@
     "public": "./",
     "ignore": [
       "firebase.json",
+      "firestore.rules",
+      "firestore.indexes.json",
       "database-rules.json",
       "storage.rules",
       "functions"
