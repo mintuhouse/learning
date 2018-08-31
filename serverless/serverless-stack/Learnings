@@ -1,0 +1,77 @@
+Keep lambdas warm using scheduled functions - https://github.com/FidelLimited/serverless-plugin-warmup
+Special request which doesn't need to complete full request path
+
+AWS Lambda:
+Memory: 128MB - 3008MB - CPU proportional
+Ephemeral disk space: 512MB at /tmp
+Max execution duration: 300 seconds or 5 minutes
+Compressed package size: 50MB including node_modules/
+Uncompressed package size: 250MB
+
+
+exports.myHandler = function(event, context, callback) {
+  // do stuff
+  callbacks( Error error, Object result);
+}
+
+Lambda functions need to be packaged (compress & send to S3)
+
+Won't be handling concurrent requests in our code as each request is handled by single instance of lambda function.
+
+VPCs in AWS Lambda slows cold start by 10s (TODO: Check if this is still true)
+
+Node v8.10
+
+
+https://github.com/AnomalyInnovations/serverless-nodejs-starter
+https://github.com/dherault/serverless-offline
+yarn - https://github.com/serverless-heaven/serverless-webpack
+jest
+eslint
+prettier - https://github.com/postlight/serverless-babel-starter
+
+
+Code Coverage: https://github.com/gotwarlost/istanbul
+Search for most common libraries for serverless, nodejs, express
+ORM for DynamoDB
+
+
+
+READ:
+https://serverless.com/blog/serverless-express-rest-api/
+https://serverless.com/blog/make-serverless-graphql-api-using-lambda-dynamodb/
+
+
+Autogenerate the API Documentation
+
+
+stages: dev, beta, prod
+
+
+API Gateway
+* Usage plans
+* Caching
+* Authorizers
+* Stages & Version aliases
+* SDK Generation
+* API Monitoring
+
+Integrate some error tracking tool
+
+GraphQL versioning may not be required but use it for being future proof
+https://www.apollographql.com/docs/guides/
+https://graphql.org/learn/
+
+
+npx aws-api-gateway-cli-test \
+--username='admin@example.com' \
+--password='Passw0rd!' \
+--user-pool-id='ap-south-1_lIFveWFyn' \
+--app-client-id='40kt3hh43v664iu1jrukou5nt0' \
+--cognito-region='ap-south-1' \
+--identity-pool-id='ap-south-1:d41f9b64-fc85-49ec-8e1a-ad944cb53562' \
+--invoke-url='https://6y7l22j2ti.execute-api.ap-south-1.amazonaws.com/prod' \
+--api-gateway-region='ap-south-1' \
+--path-template='/notes' \
+--method='POST' \
+--body='{"content":"hello world","attachment":"hello.jpg"}'
