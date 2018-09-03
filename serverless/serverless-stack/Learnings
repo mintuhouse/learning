@@ -61,17 +61,89 @@ Integrate some error tracking tool
 GraphQL versioning may not be required but use it for being future proof
 https://www.apollographql.com/docs/guides/
 https://graphql.org/learn/
+https://aws-amplify.github.io/amplify-js/media/api_guide.html
+https://aws-amplify.github.io/amplify-js/media/react_guide
+https://www.howtographql.com/react-apollo/0-introduction/
+
+Enable CSP
+
+Use Encryption At Rest everywhere
+
+https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html
+https://d1.awsstatic.com/whitepapers/serverless-architectures-with-aws-lambda.pdf
+https://medium.com/@mayconbordin/lessons-learned-building-a-large-serverless-project-on-aws-74d40f5b0b46
+Split serverless.yml
+Add plugins to handle limits on IAM policy size (serverless-plugin-custom-roles) and CloudFormation stack size (serverless-plugin-split-stacks)
+Don't use nested stacks - serverless-dependson-plugin
+
+Read
+https://medium.com/@PaulDJohnston/serverless-best-practices-b3c97d551535
+* Each function should do only one thing - no switch statements
+* One function per route - no proxy in the middle
+* Functions don't call another function - push to data store or queue and let it take from there
+* Use a library only if you must and need all of it - no too express
+* Serverless works best with services than connections - no to RDBMS (To use RDBMS put a service that handles connection pooling in the middle)
+* Use messages & queues - not request-response cycles
+* Data flow rather than data lakes - no querying from data lakes
+* Don't run resources in a private VPC
 
 
-npx aws-api-gateway-cli-test \
---username='admin@example.com' \
---password='Passw0rd!' \
---user-pool-id='ap-south-1_lIFveWFyn' \
---app-client-id='40kt3hh43v664iu1jrukou5nt0' \
---cognito-region='ap-south-1' \
---identity-pool-id='ap-south-1:d41f9b64-fc85-49ec-8e1a-ad944cb53562' \
---invoke-url='https://6y7l22j2ti.execute-api.ap-south-1.amazonaws.com/prod' \
---api-gateway-region='ap-south-1' \
---path-template='/notes' \
---method='POST' \
---body='{"content":"hello world","attachment":"hello.jpg"}'
+Use Kinesis for queue (Instead of SQS)
+Allow as much RAM as your wallet can allow. Decreasing RAM lowers both performance and bill (CPU grows with RAM)
+- Regularly do a cost analysis by calculating time on different RAM and picking the best
+
+
+READ:
+DynamoDB partitioning - for scaling without having a single hot partition
+Using X-Ray for serverless
+
+Serverless/plugins
+- serverless-appsync-plugin
+- serverless-dynamodb-autoscaling
+- serverless-plugin-typescript
+- serverless-plugin-warmup
+- serverless-webpack
+
+
+Parallelize the initialization - before the callback in each serverless function
+
+
+Import/Require only the recommended packages
+const aws = require('aws-sdk/global'); // Instead of const aws = require('aws-sdk');
+const dynamodb = require('aws-sdk/clients/dynamodb');
+
+Use AWS KMS for storing all secrets
+
+
+Use Netlify to host React static pages
+
+Write your application code assuming you would move to koa or similar framework later
+
+
+Use AirBnB javascript guide for react
+https://github.com/airbnb/javascript/tree/master/react
+https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a
+
+Sample Projects
+https://github.com/aws-samples?q=react
+
+
+Alternative to immutable.js - eslint-plugin-fp
+Use flow type checking
+
+
+How to restrict cognito to a list of domains
+
+Use SCSS for styles
+Folder structure for react apps
+
+
+Have all validations on server side also
+
+material-admin https://github.com/marmelab/react-admin
+material-ui https://material-ui.com/
+https://www.creative-tim.com/product/material-kit-react?partner=104080
+
+
+Form
+https://github.com/erikras/redux-form
