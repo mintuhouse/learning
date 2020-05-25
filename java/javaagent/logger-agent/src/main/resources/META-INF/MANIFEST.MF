@@ -1,0 +1,5 @@
+Premain-Class: com.dream11.logger.agent.VertxLoggerInstrumentationAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Can-Set-Native-Method-Prefix: true
+Agent-Class: com.dream11.logger.agent.VertxLoggerInstrumentationAgent
